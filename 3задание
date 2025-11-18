@@ -1,0 +1,26 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double a, b, c;
+    ifstream fin("in3.dat");
+    fin >> a >> b >> c;
+    fin.close();
+
+    double p = (a + b + c) / 2.0;
+    double s = sqrt(p * (p - a) * (p - b) * (p - c));
+
+    double r = s / p;
+    double R = (a * b * c) / (4.0 * s);
+
+    ofstream fout("out3.dat");
+    fout << fixed << setprecision(6);
+    fout << "Радиус вписанной окружности r = " << r << "\n";
+    fout << "Радиус описанной окружности R = " << R << endl;
+    fout.close();
+
+    return 0;
+}
