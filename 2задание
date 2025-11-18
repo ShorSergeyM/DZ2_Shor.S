@@ -1,0 +1,23 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double a;
+    ifstream fin("in2.dat");
+    fin >> a;
+    fin.close();
+
+    double a2 = a * a;        // 1
+    double a4 = a2 * a2;      // 2
+    double a8 = a4 * a4;      // 3
+    double a16 = a8 * a8;     // 4
+    double a20 = a16 * a4;    // 5
+
+    cout << fixed << setprecision(6);
+    cout << "a^4 = " << a4 << "\n";
+    cout << "a^20 = " << a20 << endl;
+    return 0;
+}
