@@ -1,1 +1,18 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
 
+int main() {
+    double a, b;
+    cout << "Введите катеты a и b: ";
+    cin >> a >> b;
+
+    double c = sqrt(a*a + b*b);
+    double s = a * b / 2.0;
+
+    cout << fixed << setprecision(4);
+    cout << "Гипотенуза: " << c << "\n";
+    cout << "Площадь: " << s << endl;
+    return 0;
+}
