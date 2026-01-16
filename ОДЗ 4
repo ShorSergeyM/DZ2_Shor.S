@@ -1,0 +1,90 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void task1() {
+    cout << "\n=== Task 1: Calculating 10! in three cycles ===\n";
+    int n = 10;
+
+    long long fact_for = 1;
+    for (int i = 1; i <= n; ++i) {
+        fact_for *= i;
+    }
+    cout << "10! (for): " << fact_for << endl;
+
+    long long fact_while = 1;
+    int i = 1;
+    while (i <= n) {
+        fact_while *= i;
+        ++i;
+    }
+    cout << "10! (while): " << fact_while << endl;
+
+    long long fact_do = 1;
+    i = 1;
+    do {
+        fact_do *= i;
+        ++i;
+    } while (i <= n);
+    cout << "10! (do...while): " << fact_do << endl;
+}
+
+double nested_sqrt(int current) {
+    if (current == 99) {
+        return sqrt(99.0);
+    }
+    return sqrt(current + nested_sqrt(current + 3));
+}
+
+void task2() {
+    cout << "\n=== Task 2: Nested roots ===\n";
+    double result = nested_sqrt(3);
+    cout << "Result: " << result << endl;
+}
+
+void task3() {
+    cout << "\n=== Task 3: Iterated sin ===\n";
+    double x;
+    cout << "Enter x: ";
+    cin >> x;
+
+    double y = x;
+    int iterations = 0;
+
+    while (abs(y) >= 0.0001) {
+        y = sin(y);
+        iterations++;
+    }
+
+    cout << "First value < 0.0001: " << y << endl;
+    cout << "Number of iterations: " << iterations << endl;
+}
+
+void task4() {
+    cout << "\n=== Task 4: Finding a pair where one number is divisible by another ===\n";
+    int p, m;
+    cout << "Enter pairs of integers p and m:\n";
+
+    while (true) {
+        cout << "p m: ";
+        cin >> p >> m;
+
+        if (m != 0 && p % m == 0) {
+            cout << "Pair found: (" << p << ", " << m << ") — " << p << " divides by " << m << ".\n";
+            break;
+        }
+        if (p != 0 && m % p == 0) {
+            cout << "Pair found: (" << p << ", " << m << ") — " << m << " divides by " << p << ".\n";
+            break;
+        }
+        cout << "The pair does not match. Continue typing..\n";
+    }
+}
+
+int main() {
+    task1();
+    task2();
+    task3();
+    task4();
+    return 0;
+}
