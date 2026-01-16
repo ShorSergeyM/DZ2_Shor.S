@@ -1,0 +1,48 @@
+#include <iostream>
+#include <random>
+using namespace std;
+
+double random_double_minus1_to_1() {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<double> dis(-1.0, 1.0);
+    return dis(gen);
+}
+
+double** gen_matrix(int size) {
+    double** matrix = new double*[size];
+    for (int i = 0; i < size; i++) {
+        matrix[i] = new double[size];
+        for (int j = 0; j < size; j++) {
+            matrix[i][j] = random_double_minus1_to_1();
+        }
+    }
+    return matrix;
+}
+
+double find_max_scalar(double** matrix, int size) {
+    double max = -2;
+    int I;
+    int J;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+                I = i;
+                J = j;
+            }
+        }
+    }
+    double sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += matrix[I][i] * matrix[i][J];
+    }
+    return sum;
+}
+
+int main() {
+    int size = 7;
+    double** matrix = gen_matrix(size);
+    cout << find_max_scalar(matrix, size) << endl;
+    return 0;
+}
