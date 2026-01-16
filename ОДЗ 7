@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+int** gen_matrix(int size) {
+    int** matrix = new int*[size];
+    for (int i = 0; i < size; i++) {
+        matrix[i] = new int[size];
+        for (int j = 0; j < size; j++) {
+            matrix[i][j] = rand() % 100;
+        }
+    }
+    return matrix;
+}
+
+int s1(int** matrix, int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += matrix[0][i];
+        sum += matrix[size - 1][i];
+        if (i != size - 1 && i != 0) {
+            sum += matrix[i][0];
+            sum += matrix[i][size - 1];
+        }
+    }
+    return sum;
+}
+
+int s2(int** matrix, int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += matrix[i][i];
+        if (i != size - i - 1) {
+            sum += matrix[i][size - i - 1];
+        }
+    }
+    return sum;
+}
+
+int s3(int** matrix, int size) {
+    int radius = size / 2;
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (abs(i - radius) + abs(j - radius) <= radius) {
+                sum += matrix[i][j];
+            }
+        }
+    }
+    return sum;
+}
+
+int s4(int** matrix, int size) {
+    int mid = size / 2;
+    int sum = 0;
+
+    for (int i = 0; i < size; ++i) {
+        int d = abs(i - mid);
+        for (int j = d; j <= size - 1 - d; ++j) {
+            sum += matrix[i][j];
+        }
+    }
+    return sum;
+}
+
+int main() {
+    int size = 9;
+    int** matrix = gen_matrix(size);
+    cout << s1(matrix, size) << endl;
+    cout << s2(matrix, size) << endl;
+    cout << s3(matrix, size) << endl;
+    cout << s4(matrix, size) << endl;
+    return 0;
+}
